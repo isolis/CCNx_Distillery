@@ -1,0 +1,140 @@
+CCNx Distillery
+Frequently Asked Questions
+
+# About Distillery
+
+## What is CCNx Distillery
+
+CCNx Distillery acts as the central point for the CCNx software distribution.
+CCNx is divided into various repositories. Distillery pulls all those together
+to create a full suite of libraries, tools and programs.
+
+## Where can I find out more information?
+
+http://www.ccnx.org/
+
+## Is there a mailing list?
+
+https://www.ccnx.org/mailman/listinfo/ccnx/
+
+## Where can I get the source code to CCNx Distillery?
+
+https://github.com/PARC/CCNx_Distillery
+
+
+# Dependencies
+
+## What are the dependencies?
+
+Distillery depends on a number of tools and libraries to build the CCNx
+software suite. Some operating systems come with pre-built versions of
+the dependencies.  Others require you to install them.  Distillery provides an
+easy way to install the required dependencies.
+
+The main dependencies are:
+
+- make
+- cmake
+- gcc / clang
+- git
+- libevent
+- openSSL
+- pcre
+
+Optional dependencies include:
+
+- doxygen
+- uncrustify
+
+Distillery itself doesn't use most of these dependencies (other than make and
+git), they are required by the different CCNx software modules.
+
+
+## How do I install dependencies?
+
+make dependencies
+
+
+# Setting up
+
+## Quick start?
+
+git clone http://github.com/PARC/CCNx_Distillery CCNx_Distillery
+cd CCNx_Distillery
+make dependencies
+make update
+make all
+make check
+
+## What does make update do?
+
+make update will do a git pull of all the different software modules.
+
+## What does make all do?
+
+make all compiles all the softare and installs it in the install directory. The
+install directory defaults to ./usr  (usr inside CCNx_Distillery). You can
+change this in the configuration via the variable DISTILLERY_INSTALL_DIR
+
+## What does make step do?
+
+make step will iterate over every module and compile, install and test it. This
+should help find test errors more quickly.
+
+
+
+# Configuration
+
+## How can I configure Distillery?
+
+You can modify the behavior of Distillery by setting some configuration
+variables. The default configuration file is config/config.mk.  Do not modify
+this file, this is meant to keep the default values.  If you wish to change any
+variables, please do so in the local config config/local/config.mk or your
+personal user config in ~/.ccnx/distillery/config.mk
+
+## What configuration do I use to work with forked repos?
+
+Distillery has a variable called DISTILLERY_GITHUB_USER that can be set to your
+GitHub user name. If you do this _before_ you do the first make update then
+Distillery will clone the repositories from your GitHub namespace.  Please fork
+all the repos before you do this.  You can fork Distillery as well.
+
+## How do I update the source code?
+
+make update will update the source from GitHub by doing a git pull. This will
+update the current branch you're working on.  If you would like to do a git
+fetch on all repositories do a make fetch.
+
+## How do I update the source code to the PARC upstream source code?
+
+Distillery adds a parc_upstream to the repos it clones.  This means that if you
+fork the repos you can keep track of the PARC original repo via the
+parc_upstream remote.  Distillery offers a way for you to syncrhonize your
+master branch to the PARC master branch with the make sync command.
+
+## How can I change the parallelism of the compilation process?
+
+You can set the -j flag in the variable MAKE_BUILD_FLAGS. The default is -j8.
+You can also set the parallelism of the tests by changing CMAKE_MAKE_TEST_ARGS.
+See the default in config/config.mk for an example on how to do this.
+
+## What are the modules?
+
+Distillery's makefile reads modules off of a modules directory config/modules.
+It parses every file that ends with .mk.  You can see each of the files there
+as examples.  
+
+## Can I add my own modules?
+
+Yes. Keep in mind that the modules must provide some default targets for the
+main Makefile to work. The main Makefile generates some targets automatically.
+
+## Can I enable only some modules?
+
+Yes. Each module comes with a variable to enable or disable the module.
+Distillery also has a general variable that tells the modules if the default is
+enalbed or disabled. Look in the config/config.mk for
+ENABLE_ALL_MODULES_BY_DEFAULT.  You can for example set
+ENABLE_ALL_MODULES_BY_DEFAULT=NO and then ENABLE_LONGBOW=YES.  This will only
+enable the LongBow module. 
