@@ -10,6 +10,7 @@ before_script:
  - cat $HOME/.ccnx/distillery/config.mk
  - make info
  - make -C dependencies cmake
+ - make update
 
 script: CTEST_OUTPUT_ON_FAILURE=1 make all check
 
