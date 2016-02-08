@@ -9,7 +9,7 @@ before_script:
  - make info
  - make -C dependencies cmake
 
-script: DISTILLERY_DEPENDENCIES_DIR=$HOME/.ccnx/dependencies make all check
+script: CTEST_OUTPUT_ON_FAILURE=1 make all check
 
 cache:
   directories:
