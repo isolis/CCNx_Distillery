@@ -1,0 +1,9 @@
+language: c
+
+sudo: required
+dist: trusty
+
+before_script:
+ - make update
+
+script: make all check
