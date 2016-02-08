@@ -6,7 +6,7 @@ dist: trusty
 before_script:
  - make update
 
-script: make all check
+script: CTEST_OUTPUT_ON_FAILURE=1 make all check
 
 cache:
   directories:
