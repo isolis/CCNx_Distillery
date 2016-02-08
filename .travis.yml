@@ -17,3 +17,11 @@ cache:
   directories:
     - src
     - $HOME/.ccnx
+
+after_failure:
+  - echo LONGBOW =========================================
+  - cat build/LongBow/Testing/Temporary/LastTest.log.tmp
+  - echo LIBPARC =========================================
+  - cat build/Libparc/Testing/Temporary/LastTest.log.tmp
+  - echo LIBCCNX_COMMON =========================================
+  - cat build/Libccnx-common/Testing/Temporary/LastTest.log.tmp
