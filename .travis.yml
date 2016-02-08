@@ -22,6 +22,8 @@ cache:
     - $HOME/.ccnx
 
 after_failure:
+  - pwd
+  - ls
   - echo LONGBOW =========================================
   - cat build/LongBow/Testing/Temporary/LastTest.log.tmp
   - echo LIBPARC =========================================
