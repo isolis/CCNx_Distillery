@@ -12,7 +12,7 @@ before_script:
  - make -C dependencies cmake
  - make update
 
-script: CTEST_OUTPUT_ON_FAILURE=1 VERBOSE=1 make all check
+script: CTEST_OUTPUT_ON_FAILURE=1 VERBOSE=1 LD_FLAGS=-lrt make all check
 
 cache:
   directories:
