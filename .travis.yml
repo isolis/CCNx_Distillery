@@ -5,6 +5,8 @@ before_script:
  - mkdir -p $HOME/.ccnx/distillery
  - echo "DISTILLERY_DEPENDENCIES_DIR=$HOME/.ccnx/dependencies" > $HOME/.ccnx/distillery/config.mk
  - echo "DISABLE_UBUNTU_CHECK=True" > $HOME/.ccnx/distillery/config.mk
+ - cat $HOME/.ccnx/distillery/config.mk
+ - make info
  - make -C dependencies cmake
 
 script: DISTILLERY_DEPENDENCIES_DIR=$HOME/.ccnx/dependencies make all check

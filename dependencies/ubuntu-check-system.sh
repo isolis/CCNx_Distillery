@@ -5,8 +5,8 @@ system_check_error(){
   echo "ERROR: You are not running Ubuntu 14.04"
   echo ""
   echo "If you want to IGNORE this error please set DISABLE_UBUNTU_CHECK=True"
-  echo "This is done in the config.local.mk file"
-  echo "Please see the config.local.mk file for more information"
+  echo "This is done in the config.mk file"
+  echo "Please see the config.mk file for more information"
   exit 1
 }
 
