@@ -1,10 +1,13 @@
 language: c
 
 before_script:
- - make update
+ - mkdir -p $HOME/.ccnx/dependencies
+ - DISTILLERY_DEPENDENCIES_DIR=$HOME/.ccnx/dependencies make dependencies
+ - DISTILLERY_DEPENDENCIES_DIR=$HOME/.ccnx/dependencies make update
 
-script: make all check
+script: DISTILLERY_DEPENDENCIES_DIR=$HOME/.ccnx/dependencies make all check
 
 cache:
   directories:
     - src
+    - $HOME/.ccnx
