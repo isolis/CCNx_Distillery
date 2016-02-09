@@ -12,6 +12,7 @@ before_script:
  - echo "CMAKE_BUILD_TYPE_FLAG=-DCMAKE_BUILD_TYPE=DEBUG" >> $HOME/.ccnx/distillery/config.mk
  - cat $HOME/.ccnx/distillery/config.mk
  - make info
+ - make dependencies
  - make update
 
 script: CTEST_OUTPUT_ON_FAILURE=1 make all check
