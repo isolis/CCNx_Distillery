@@ -10,6 +10,7 @@ before_script:
  - echo "DISABLE_UBUNTU_CHECK=True" >> $HOME/.ccnx/distillery/config.mk
  - echo "MAKE_BUILD_FLAGS=-j1" >> $HOME/.ccnx/distillery/config.mk
  - echo "CMAKE_MAKE_TEST_ARGS=" >> $HOME/.ccnx/distillery/config.mk
+ - echo "CMAKE_BUILD_TYPE_FLAG=-DCMAKE_BUILD_TYPE=DEBUG" >> $HOME/.ccnx/distillery/config.mk
  - cat $HOME/.ccnx/distillery/config.mk
  - make info
  - make update
@@ -24,6 +25,7 @@ cache:
 after_failure:
   - pwd
   - ls
+  - ./build/Libparc/parc/algol/test/test_parc_Network
   - echo LONGBOW =========================================
   - cat build/LongBow/Testing/Temporary/LastTest.log.tmp
   - echo LIBPARC =========================================
