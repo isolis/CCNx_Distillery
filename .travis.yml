@@ -1,5 +1,7 @@
 language: c
 
+compiler: clang
+
 before_script:
  - mkdir -p $HOME/.ccnx/dependencies/download
  - mkdir -p $HOME/.ccnx/distillery
@@ -12,7 +14,7 @@ before_script:
  - make -C dependencies cmake
  - make update
 
-script: CTEST_OUTPUT_ON_FAILURE=1 VERBOSE=1 LFLAGS=-lrt make all check
+script: CTEST_OUTPUT_ON_FAILURE=1 VERBOSE=1 make step
 
 cache:
   directories:
