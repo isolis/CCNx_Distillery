@@ -1,5 +1,7 @@
 language: c
 
+compiler: clang
+
 sudo: required
 dist: trusty
 
@@ -15,7 +17,8 @@ before_script:
  - make info
  - make update
 
-script: CTEST_OUTPUT_ON_FAILURE=1 make all check
+script: 
+ - make LongBow Libparc Libparc.check
 
 cache:
   directories:
