@@ -1,7 +1,6 @@
 language: c
 
-sudo: required
-dist: trusty
+os: osx
 
 before_script:
  - mkdir -p $HOME/.ccnx/dependencies/download
